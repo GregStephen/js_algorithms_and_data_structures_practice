@@ -9,6 +9,7 @@ function App() {
  console.error('validAnagram(hello, lloeh)', ProblemSolvingPatterns.validAnagram('hello', 'lloeh'));
  console.error('validAnagram(bloop lloeh)', ProblemSolvingPatterns.validAnagram('bloop', 'lloeh'));
  console.error('countUniqueValues([1,2,2,5,7,7,99])', ProblemSolvingPatterns.countUniqueValues([1,2,2,5,7,7,99]));
+ console.error('maxSubarraySum([2,6,9,2,1,8,5,6,3],3)', ProblemSolvingPatterns.maxSubarraySum([2,6,9,2,1,8,5,6,3],3));
   return (
     <div className="App">
     </div>

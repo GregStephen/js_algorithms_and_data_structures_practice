@@ -69,4 +69,36 @@ function countUniqueValues(arr){
   return i + 1;
 }
 
-export default {same, validAnagram, countUniqueValues};
+////////////////////////////////////////////////////
+/////////////////SLIDING DOOR///////////////////////
+////////////////////////////////////////////////////
+
+// takes in a SORTED array and then a number
+// calculates the max number of added numbers in the array dependant on the length of the number
+function maxSubarraySum(arr, num){
+  let maxSum = 0;
+  let tempSum = 0;
+  // cant calculate if the number of digits needed is smaller than the length of the array
+  if (arr.length < num) return null;
+
+  // gets the first value of how many digits needed added together and sets it as the maxsum
+  for (let i = 0; i < num; i++) {
+    maxSum += arr[i];
+  }
+  // now tempSum and maxSum equal each other
+  tempSum = maxSum;
+  // now loops thru the array BUT starts at the digit after the ones we just added togeher
+  for (let i = num; i < arr.length; i++) {
+    // calculates the sum of these numbers by taking the old sum we had
+    // minuses off the first digit of the old sub array, since we dont need it anymore
+    // adds the last number in the current array
+    tempSum = tempSum - arr[i - num] + arr[i];
+    // sets maxSum to whichever is greater
+    maxSum = Math.max(maxSum, tempSum);
+  }
+  return maxSum;
+}
+
+
+export default {same, validAnagram, countUniqueValues, maxSubarraySum};
+
