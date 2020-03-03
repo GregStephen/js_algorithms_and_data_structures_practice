@@ -100,6 +100,15 @@ return false;
 /////////////////SLIDING DOOR///////////////////////
 ////////////////////////////////////////////////////
 
+// Given an array of integers and a number, write a function called maxSubarraySum,
+// which finds the max sum of a subarray with the length of the number passed to the function
+
+const maxSubarraySum = (array, num) => {
+  
+}
+
+
+
 // takes in a SORTED array and then a number
 // calculates the max number of added numbers in the array dependant on the length of the number
 function maxSubarraySum(arr, num){
