@@ -100,11 +100,37 @@ return false;
 /////////////////SLIDING DOOR///////////////////////
 ////////////////////////////////////////////////////
 
-// Given an array of integers and a number, write a function called maxSubarraySum,
-// which finds the max sum of a subarray with the length of the number passed to the function
 
-const maxSubarraySum = (array, num) => {
-  
+// doesn't work correctly yet
+
+const minSubArrayLen = (arr, num) => {
+  let minimalLength = Infinity;
+  let tempTotal = 0;
+  let left = 0;
+  let right = 0;
+  while(left < arr.length){
+    if (tempTotal < num && right < arr.length) {
+      tempTotal += arr[right];
+      right ++
+    }
+    else if(tempTotal >= num) {
+      minimalLength = Math.min(minimalLength, right-left);
+      tempTotal -= num[left];
+      left++;
+    }
+    else {
+      break;
+    }
+
+  }
+
+  if (minimalLength === Infinity){
+    return 0;
+  }
+  else {
+    return minimalLength;
+  }
+
 }
 
 
@@ -136,5 +162,5 @@ function maxSubarraySum(arr, num){
 }
 
 
-export default {same, validAnagram, countUniqueValues, maxSubarraySum, averagePair};
+export default {same, validAnagram, countUniqueValues, maxSubarraySum, averagePair, minSubArrayLen};
 
