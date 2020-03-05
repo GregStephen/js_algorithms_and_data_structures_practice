@@ -57,3 +57,28 @@ function collectOddsValues(arr) {
   helper(arr);
   return result;
 }
+
+///////////////////////////////////////////////////////////
+///////////////////////////// PURE RECURSION /////////////////
+/////////////////////////////////////////////
+
+
+// pure recursion tips :
+// For arrays, use methods like slice, the spread operator, and concat that make copies of arrays
+// so you do not mutate them
+
+// Strings are immutable so yuo will need to use methods like slice, substr, or substring to make copies
+
+// To make copies of objects use Object.assign or the spread operator
+
+function collectOddValuesPure(arr) {
+  let newArr = [];
+  if (arr.length === 0) {
+    return newArr;
+  }
+  if(arr[0] % 2 !== 0) {
+    newArr.push(arr[0]);
+  }
+  newArr = newArr.concat(collectOddValuesPure(arr.slice(1)));
+  return newArr;
+}
