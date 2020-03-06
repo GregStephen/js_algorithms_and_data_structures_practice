@@ -82,3 +82,55 @@ function collectOddValuesPure(arr) {
   newArr = newArr.concat(collectOddValuesPure(arr.slice(1)));
   return newArr;
 }
+
+
+// write a function called power which accepts a base and an exponent.
+// the func should return the power of the base to the exponent.
+
+const power = (base, exponent) => {
+  if (exponent === 0) {
+    return 1;
+  }
+  return base * power(base, exponent - 1);
+}
+
+
+const factorial = (num) => {
+  if (num === 0 ) return 1;
+  return num * factorial(num-1);
+}
+
+const productOfArray = (arr) => {
+  if (arr.length === 1) return arr[0];
+  return arr[0] * productOfArray(arr.slice(1))
+}
+
+
+const recursiveRange = (num) => {
+  if (num === 1) return 1;
+  return num + recursiveRange(num - 1);
+}
+
+const fib = (num) => {
+  
+}
+
+const getAllPermutations = (int) => {
+  const permutations = [];
+  
+  const stringedInt = int.toString();
+  if (stringedInt.length === 1 ) {
+       permutations.push(stringedInt);
+       return permutations;
+  }
+
+  for (var i = 0; i < stringedInt.length; i++) {
+      let firstNum = stringedInt[i];
+      let lastNums = stringedInt.substring(0, i) + stringedInt.substring(i+1);
+      let laterPerms = getAllPermutations(lastNums);
+      for (var j = 0; j < laterPerms.length; j++) {
+          permutations.push(firstNum + laterPerms[j]);
+      }
+  }
+  return permutations;
+}
