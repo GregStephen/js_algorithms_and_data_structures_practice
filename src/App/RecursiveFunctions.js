@@ -112,7 +112,18 @@ const recursiveRange = (num) => {
 }
 
 const fib = (num) => {
-  
+  if (num <= 2) return 1;
+  return fib(num-1) + fib(num-2);
+}
+
+const reverse = (string) => {
+  let newString = '';
+  if (string.length === 0) {
+    return newString;
+  }
+  newString = string.substring(string.length-1);
+  newString = newString.concat(reverse(string.substring(0, string.length - 1)));
+  return newString;
 }
 
 const getAllPermutations = (int) => {

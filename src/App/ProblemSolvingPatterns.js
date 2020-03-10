@@ -161,6 +161,5 @@ function maxSubarraySum(arr, num){
   return maxSum;
 }
 
-
 export default {same, validAnagram, countUniqueValues, maxSubarraySum, averagePair, minSubArrayLen};
 

@@ -15,7 +15,6 @@ function App() {
  console.error('averagePair([], 2.5)', ProblemSolvingPatterns.averagePair([], 2.5));
  console.error('averagePair([-1,0,3,4,5,6], 4.1)', ProblemSolvingPatterns.averagePair([-1,0,3,4,5,6], 4.1));
 
- console.error('asrg', ProblemSolvingPatterns.getAllPermutations(123));
   return (
     <div className="App">
     </div>
