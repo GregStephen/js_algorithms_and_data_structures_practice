@@ -14,7 +14,7 @@ function App() {
  console.error('averagePair([1,3,3,5,6,7,10,12,19], 8)', ProblemSolvingPatterns.averagePair([1,3,3,5,6,7,10,12,19], 8));
  console.error('averagePair([], 2.5)', ProblemSolvingPatterns.averagePair([], 2.5));
  console.error('averagePair([-1,0,3,4,5,6], 4.1)', ProblemSolvingPatterns.averagePair([-1,0,3,4,5,6], 4.1));
-
+console.error('is', ProblemSolvingPatterns.isPalindrome('heyeh'));
   return (
     <div className="App">
     </div>

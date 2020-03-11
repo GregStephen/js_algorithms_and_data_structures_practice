@@ -126,6 +126,29 @@ const reverse = (string) => {
   return newString;
 }
 
+const isPalindrome = (string) => {
+  if (string.length === 1 || string.length === 0) return true;
+  let firstLet = string[0];
+  let lastLet = string.slice(-1);
+  if (firstLet !== lastLet) return false;
+  else {
+    return isPalindrome(string.slice(1,-1));
+  }
+}
+
+const someRecursive = (arr, callbackFunc) => {
+  if (arr.length === 0) return false;
+  if (callbackFunc(arr[0])) return true;
+  return someRecursive(arr.slice(1), callbackFunc);
+};
+
+const capitalizeWords = (arr) => {
+  if (arr.length === 1) return [arr[0].toUpperCase()];
+  let newArr = capitalizeWords(arr.slice(0, -1));
+  newArr.push(arr.slice(arr.length-1)[0].toUpperCase());
+  return newArr;
+}
+
 const getAllPermutations = (int) => {
   const permutations = [];
   
