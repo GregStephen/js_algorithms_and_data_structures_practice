@@ -126,6 +126,93 @@ const reverse = (string) => {
   return newString;
 }
 
+const isPalindrome = (string) => {
+  if (string.length === 1 || string.length === 0) return true;
+  let firstLet = string[0];
+  let lastLet = string.slice(-1);
+  if (firstLet !== lastLet) return false;
+  else {
+    return isPalindrome(string.slice(1,-1));
+  }
+}
+
+const someRecursive = (arr, callbackFunc) => {
+  if (arr.length === 0) return false;
+  if (callbackFunc(arr[0])) return true;
+  return someRecursive(arr.slice(1), callbackFunc);
+};
+
+
+// takes in an array of strings and capitalizes the first letter of each word
+const capitalizeFirst = (arr) => {
+  let newArray = [];
+  if (arr.length === 0) return newArray;
+
+  const capitalizeFirstLetter = (string) => {
+    return string[0].toUpperCase() + string.substring(1)
+  }
+  let capitalizedString = capitalizeFirstLetter(arr[0]);
+  newArray.push(capitalizedString);
+  newArray = newArray.concat(capitalizeFirst(arr.slice(1)));
+  return newArray;
+}
+
+// takes in an array of strings and capitalizes the whole word.
+const capitalizeWords = (arr) => {
+  if (arr.length === 1) return [arr[0].toUpperCase()];
+  let newArray = capitalizeWords(arr.slice(0, -1));
+  newArray.push(arr.slice(arr.length-1)[0].toUpperCase());
+  return newArray;
+}
+
+
+// takes in an object that may have nested objects, returns the sum of all the even numbers
+const nestedEvenSum = (obj) => {
+  let sum = 0;
+  for (let key in obj) {
+    if (typeof obj[key] === 'object') {
+      sum += (nestedEvenSum(obj[key]))
+    }
+    if (typeof obj[key] === 'number' && obj[key] % 2 === 0) {
+      sum += obj[key];
+    }
+  }
+  return sum;
+}
+
+
+// takes in an object that may have nested objects, returns the same obj but the numbers are strings
+const stringifyNumbers = (obj) => {
+  let newObj = {};
+  for (let key in obj) {
+    if (typeof obj[key] === 'number') {
+      newObj[key] = obj[key].toString();
+    }
+     else if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+      newObj[key] = stringifyNumbers(obj[key]);
+    }
+    else {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+};
+
+
+// takes in an array that may be nested and returns an array of all the strings
+const collectStrings = (obj) => {
+  let arrayToReturn = [];
+  for (let key in obj) {
+    if (typeof obj[key] === 'string') {
+      arrayToReturn.push(obj[key]);
+    }
+    else if (typeof obj[key] === 'object') {
+      arrayToReturn = arrayToReturn.concat(collectStrings(obj[key]));
+    }
+  }
+  return arrayToReturn;
+};
+
 const getAllPermutations = (int) => {
   const permutations = [];
   
