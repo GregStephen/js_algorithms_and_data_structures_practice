@@ -46,4 +46,35 @@ const simpleArraySum = (ar) => {
   return ar[0] + simpleArraySum(ar.slice(1));
 }
 
+
+const compareTriplets = (a, b) => {
+  let returnScore = [0, 0];
+  for(let i = 0; i < a.length; i++){
+    if (a[i] > b[i]) {
+      returnScore[0] ++;
+    }
+    else if (a[i] < b[i]) {
+      returnScore[1] ++;
+    }
+  }
+  return returnScore;
+}
+
+const aVeryBigSum = (ar) => {
+  if (ar.length === 1) return ar[0];
+  return ar[0] + simpleArraySum(ar.slice(1));
+}
+
+const diagonalDifference = (ar) => {
+  let firstSum = 0;
+  let secondSum = 0;
+  for(let i = 0; i < ar.length; i + 4) {
+    firstSum += ar[i];
+  }
+  for (let i = 2; i <= 6; i + 2) {
+    secondSum += ar[i];
+  }
+  return Math.abs(firstSum - secondSum);
+}
+
 export default {sockMerchant, countingValleys, jumpingOnClouds};
