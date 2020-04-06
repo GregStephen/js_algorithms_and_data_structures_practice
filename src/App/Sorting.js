@@ -1,27 +1,32 @@
-// Optimized BubbleSort with noSwaps
+//////////////Optimized BubbleSort with noSwaps/////////////////////
 // once no swaps happen, the array is sorted so doesn't need to keep going
-
-function bubbleSort(arr){
+// time Complexity O(nsquared)
+// space complexity O(1)
+////////////////////////////////////////////////////////
+function bubbleSort(arr) {
   var noSwaps;
-  for(var i = arr.length; i > 0; i--){
+  for (var i = arr.length; i > 0; i--) {
     noSwaps = true;
-    for(var j = 0; j < i - 1; j++){
-      if(arr[j] > arr[j+1]){
+    for (var j = 0; j < i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
         var temp = arr[j];
-        arr[j] = arr[j+1];
-        arr[j+1] = temp;
-        noSwaps = false;         
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+        noSwaps = false;
       }
     }
-    if(noSwaps) break;
+    if (noSwaps) break;
   }
   return arr;
 }
 
-bubbleSort([8,1,2,3,4,5,6,7]);
 
-// Selection sort
+////////////////////Selection sort////////////////////
 // puts the lowest value into the first array and grows from there
+// not good for nearly sorted
+// time Complexity O(nsquared)
+// space complexity O(1)
+////////////////////////////////////////////////
 function selectionSort(arr) {
   const swap = (arr, idx1, idx2) =>
     ([arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]);
@@ -42,27 +47,29 @@ function selectionSort(arr) {
   return arr;
 }
 
-selectionSort([0,2,34,22,10,19,17]);
 
 
-// Insertion sort!
+///////////Insertion sort////////////////
+// time Complexity O(nsquared)
+// space complexity O(1)
+// bad if almost sorted data
+// good at sorting data live as data is coming in
+//////////////////////////////////////////
 
-function insertionSort(arr){
+function insertionSort(arr) {
   var currentVal;
   // goes thru the array starting on the second item
-    for(var i = 1; i < arr.length; i++){
-        currentVal = arr[i];
-        // then it checks with the items before it and if the iteration is not yet zero AND it is larger than 
-        // current value than it'll keep working backwards 
-        for(var j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
-          // since arr[j] has to be larger than the current value for the loop to keep going
-          // it will move the larger item up
-            arr[j+1] = arr[j]
-        }
-        //once the loop stops it inserts the current value where it needs to go
-        arr[j+1] = currentVal;
+  for (var i = 1; i < arr.length; i++) {
+    currentVal = arr[i];
+    // then it checks with the items before it and if the iteration is not yet zero AND it is larger than 
+    // current value than it'll keep working backwards 
+    for (var j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
+      // since arr[j] has to be larger than the current value for the loop to keep going
+      // it will move the larger item up
+      arr[j + 1] = arr[j]
     }
-    return arr;
+    //once the loop stops it inserts the current value where it needs to go
+    arr[j + 1] = currentVal;
+  }
+  return arr;
 }
-
-insertionSort([2,1,9,76,4])
