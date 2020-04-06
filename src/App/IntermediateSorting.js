@@ -82,3 +82,12 @@ const pivot = (array, start = 0, end = array.length + 1) => {
   swap(array, start, indexOfPivot)
   return indexOfPivot;
 }
+
+const quickSort = (array, left = 0, right = array.length - 1) => {
+  if(left < right) {
+    let pivotIndex = pivot(arr, left, right)
+    quickSort(array, left, pivotIndex - 1)
+    quickSort(array, pivotIndex + 1, right)
+  }
+  return array;
+}
