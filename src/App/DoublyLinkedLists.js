@@ -69,6 +69,7 @@ class DoublyLinkedList {
     this.length--;
     return oldHead;
   }
+
   unshift(value) {
     let newNode = new Node(value);
     if (this.length === 0) {
@@ -82,5 +83,28 @@ class DoublyLinkedList {
     }
     this.length++;
     return this;
+  }
+
+  get(index) {
+    if (index < 0 || index >= this.length) {
+      return null
+    }
+    let counter = 0;
+    let nodeToReturn = this.head;
+    if (index <= this.length/2) {
+      while(counter != index) {
+        nodeToReturn = nodeToReturn.next;
+        counter++
+      }
+    }
+    else {
+      counter = this.length -1;
+      nodeToReturn = this.tail;
+      while(counter != index) {
+        nodeToReturn = nodeToReturn.prev;
+        counter--;
+      }
+    }
+    return nodeToReturn;
   }
 }
