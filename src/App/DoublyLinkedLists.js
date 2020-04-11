@@ -139,4 +139,30 @@ class DoublyLinkedList {
     this.length++;
     return true;
   }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) {
+      return undefined;
+    }
+    if (index === 0) {
+       return this.shift();
+    }
+    if (index === this.length - 1) {
+      return this.pop();
+    }
+
+      let nodeToReturn = this.get(index);
+      let prevNode = nodeToReturn.prev;
+      let nextNode = nodeToReturn.next;
+      prevNode.next = nextNode;
+      nextNode.prev = prevNode;
+      // nodeToReturn.prev.next = nodeToReturn.next
+      // nodeToReturn.next.prev = nodeToReturn.prev
+      // I like making the variables more, cleaner easier to read
+      nodeToReturn.next = null;
+      nodeToReturn.prev = null;
+      this.length--;
+      return nodeToReturn;
+
+  }
 }
