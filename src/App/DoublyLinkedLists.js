@@ -2,8 +2,20 @@
 Almost identical to SIngly Linked Lists
 except every node has another pointer to the previous node
 Uses more memory but is more flexible
+better for finding nodes, can be done half the time
 */
 
+
+/*
+BIG O
+Insertion = O(1)
+Removal = O(1)
+Searching = O(n)
+Access = O(n)
+
+technically searching is O(n/2) but thats still O(n)
+
+*/
 class Node {
   constructor(val) {
     this.val = val;
@@ -166,3 +178,5 @@ class DoublyLinkedList {
 
   }
 }
+
+
