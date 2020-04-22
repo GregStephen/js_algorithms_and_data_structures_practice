@@ -8,7 +8,7 @@ WHERE STACKS ARE USED
 - used as an intermediate in algorithm
 */
 /*
-BIG O OF STACKS
+BIG O OF STACKS with singly linked lists
 
 Insertion - O(1) CONSTANT TIME
 Removal - O(1)
@@ -79,3 +79,77 @@ class Stack {
   }
 }
 
+
+
+/* QUEUE is a FIFO - First
+- Background tasks
+- Uploading resources
+- Printing / Task processing
+- Many ways to make a queue
+*/
+
+
+/*
+BIG O of Queues with the singly linked list
+Insertion - O(1)
+Removal - O(1)
+Searching - O(n)
+Access - O(n)
+*/
+
+// Creating one with an array
+var q = []
+q.push("first")
+q.push("second")
+q.push("third")
+q.shift()
+q.shift()
+q.shift()
+
+// OR
+q.unshift("FIRST")
+q.unshift("SECOND")
+q.pop()
+q.pop()
+
+// A linked list will perform better
+
+class Queue {
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.size = 0;
+  }
+
+  enqueue(val){
+    var newNode = new Node(val);
+    if (!this.first) {
+      this.first = newNode;
+      this.last = newNode;
+    }
+    else {
+      this.last.next = newNode;
+      this.last = newNode;
+    }
+    this.size++;
+    return this.size;
+  }
+
+  dequeue(){
+    if(!this.first) return null;
+    let temp = this.first;
+    if(this.first === this.last) {
+      this.last = null;
+    }
+    this.first = this.first.next;
+    this.size--;
+    return temp.value;
+  }
+}
+
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
