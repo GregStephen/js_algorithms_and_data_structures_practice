@@ -52,7 +52,7 @@ class BinarySearchTree {
     if (this.root === null) return false;
     let checkerNode = this.root.value;
     let found = false;
-    while(checkerNode && !found) {
+    while (checkerNode && !found) {
       if (value < checkerNode.value) {
         checkerNode = checkerNode.left;
       }
@@ -80,7 +80,41 @@ class BinarySearchTree {
     }
     return data;
   }
+
+  DFSPreOrder() {
+    let data = [];
+    const traverse = (node) => {
+      data.push(node.value);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return data;
+  }
+
+  DFSPostOrder() {
+    let data = [];
+    const traverse = (node) => {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      data.push(node.value);
+    }
+    traverse(this.root);
+    return data;
+  }
+
+  DFSInOrder() {
+    let data = [];
+    const traverse = (node) => {
+      if (node.left) traverse(node.left);
+      data.push(node.value);
+      if (node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return data;
+  }
 }
+
 
 class Node {
   constructor(value) {
