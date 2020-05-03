@@ -30,6 +30,14 @@ for any child node at index -n
 the parent is at floor(n-1) / 2
 */
 
+/*
+Priority Queue
+
+A Data structure where each element has a priority.
+Elements with higher priorities are served before elements
+  with lower priorities
+*/
+
 // adding to a MaxBinary Heap - add to the end, bubble up
 // removing from a heap 
 //    - Remove the root, 
@@ -83,9 +91,8 @@ class MaxBinaryHeap {
       this.values[swap] = element;
       index = swap;
     }
-
-
   }
+
   insert(value) {
     this.values.push(value);
     this.bubbleUp();
@@ -99,5 +106,79 @@ class MaxBinaryHeap {
       this.sinkDown();
     }
     return maxValue;
+  }
+}
+
+
+class PriorityQueue{
+  constructor() {
+    this.values = [];
+  }
+
+  bubbleUp() {
+    let index = this.values.length - 1;
+    const element = this.values[index];
+    while (index > 0) {
+      let parentIndex = Math.floor((index - 1) / 2);
+      let parent = this.values[parentIndex];
+      if (element <= parent) break;
+      this.values[parentIndex] = element;
+      this.values[index] = parent;
+      index = parentIndex;
+    }
+  }
+
+  sinkDown() {
+    let index = 0;
+    const length = this.values.length;
+    const element = this.values[0];
+    while (true) {
+      let leftChildIndex = 2 * index + 1;
+      let rightChildIndex = 2 * index + 2;
+      let leftChild, rightChild;
+      let swap = null;
+      if (leftChildIndex < length) {
+        leftChild = this.values[leftChildIndex];
+        if (leftChild > element) {
+          swap = leftChildIndex;
+        }
+      }
+      if (rightChildIndex < length) {
+        rightChild = this.values[rightChildIndex];
+        if (
+          (swap === null && rightChild > element) ||
+          (swap !== null && rightChild > leftChild)
+        ) {
+          swap = rightChildIndex;
+        }
+      }
+      if (swap === null) break;
+      this.values[index] = this.values[swap];
+      this.values[swap] = element;
+      index = swap;
+    }
+  }
+
+  insert(value, priority) {
+    let newNode = new Node(value, priority);
+    this.values.push(newNode);
+    this.bubbleUp();
+  }
+
+  extractMax() {
+    let maxValue = this.values[0];
+    let end = this.values.pop()
+    if (this.values.length > 0) {
+      this.values[0] = end;
+      this.sinkDown();
+    }
+    return maxValue;
+  }
+}
+
+class Node{
+  constructor(value, priority) {
+    this.value = value;
+    this.priority = priority
   }
 }
