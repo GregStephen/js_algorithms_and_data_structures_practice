@@ -20,6 +20,12 @@ A binary heap is as compact as possible. All the children of each node
 are as full as they can ben and tleft children are filled out first
 */
 
+/*
+BIG O of Binary Heap
+Insertion - O(Log(n))
+Removal - O(Log(n))
+Searching - O(n)
+*/
 
 /*
 For any index of an array - n
@@ -121,7 +127,7 @@ class PriorityQueue{
     while (index > 0) {
       let parentIndex = Math.floor((index - 1) / 2);
       let parent = this.values[parentIndex];
-      if (element <= parent) break;
+      if (element.priority <= parent.priority) break;
       this.values[parentIndex] = element;
       this.values[index] = parent;
       index = parentIndex;
@@ -139,15 +145,15 @@ class PriorityQueue{
       let swap = null;
       if (leftChildIndex < length) {
         leftChild = this.values[leftChildIndex];
-        if (leftChild > element) {
+        if (leftChild.priority > element.priority) {
           swap = leftChildIndex;
         }
       }
       if (rightChildIndex < length) {
         rightChild = this.values[rightChildIndex];
         if (
-          (swap === null && rightChild > element) ||
-          (swap !== null && rightChild > leftChild)
+          (swap === null && rightChild.priority > element.priority) ||
+          (swap !== null && rightChild.priority > leftChild.priority)
         ) {
           swap = rightChildIndex;
         }
@@ -159,13 +165,13 @@ class PriorityQueue{
     }
   }
 
-  insert(value, priority) {
+  enqueue(value, priority) {
     let newNode = new Node(value, priority);
     this.values.push(newNode);
     this.bubbleUp();
   }
 
-  extractMax() {
+  dequeue() {
     let maxValue = this.values[0];
     let end = this.values.pop()
     if (this.values.length > 0) {
