@@ -27,3 +27,13 @@ What makes a good hash?
 - Doesn't cluster outputs at specific indices, but distributes uniformly
 - Deterministic (same input yields same output)
 */
+
+
+const hash = (key, arrayLen) => {
+  let total = 0;
+  for (let char of key) {
+    let value = char.charCodeAt(0) - 96;
+    total = (total + value) % arrayLen;
+  }
+  return total;
+}
