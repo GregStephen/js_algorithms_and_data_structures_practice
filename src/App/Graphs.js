@@ -84,3 +84,17 @@ Remove Edge - O(1)
 Query - O(1)
 Storage - O(numOfVertixes**2)
 */
+
+
+class Graph {
+  constructor() {
+    this.adjacencyList = {}
+  }
+
+  addVertex = (vertex) => {
+    if(!this.adjacencyList[vertex]) {    
+      this.adjacencyList[vertex] = [];
+    }
+
+  }
+}
