@@ -113,4 +113,13 @@ class Graph {
       v => v !== vertex1
     );
   }
+
+  removeVertex = (vertex) => {
+    // NO ERROR HANDLING
+    while(this.adjacencyList[vertex].length){
+      const adjacentVertex = this.adjacencyList[vertex].pop();
+      this.removeAnEdge(vertex, adjacentVertex);
+    }
+    delete this.adjacencyList[vertex]
+  }
 }
