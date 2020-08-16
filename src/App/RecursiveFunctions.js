@@ -94,12 +94,6 @@ const power = (base, exponent) => {
   return base * power(base, exponent - 1);
 }
 
-
-const factorial = (num) => {
-  if (num === 0 ) return 1;
-  return num * factorial(num-1);
-}
-
 const productOfArray = (arr) => {
   if (arr.length === 1) return arr[0];
   return arr[0] * productOfArray(arr.slice(1))
