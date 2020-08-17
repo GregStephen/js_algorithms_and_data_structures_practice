@@ -86,6 +86,18 @@ Storage - O(numOfVertixes**2)
 */
 
 
+/*
+Graph Traversal Uses
+- Peer to peer networking
+- Web Crawlers
+- Finding 'Closest' matches/ recommendations
+- Shortest path problems
+  - GPS Navigation
+  - Solving mazes
+  - AI (shortest path to win the game)
+
+*/
+
 class Graph {
   constructor() {
     this.adjacencyList = {}
@@ -122,4 +134,62 @@ class Graph {
     }
     delete this.adjacencyList[vertex]
   }
+
+  DFSRecursive = (startingNode) => {
+    const endResult = []
+    const visited = {}
+    const adjacencyList = this.adjacencyList;
+    const dfs = (vertex) => {
+      if (!vertex) return null;
+      visited[vertex] = true;
+      endResult.push(vertex);
+      adjacencyList[vertex].forEach(neighbor => {
+        if(!visited[neighbor]) {
+          return dfs(neighbor)
+        }
+      })
+    }
+    dfs(startingNode);
+    return endResult;
+    // if vertex is empty
+      // return(base case)
+    // mark vertex as visited
+    // add vertex to results list
+    //for each neighbor in vertex's neighbors:
+      // if neighbor is not visited:
+        // recursively call DFS on neighbor
+  }
+
+  DFSIterative = (start) => {
+    const stack = []
+    const endResult = []
+    const visited = {}
+    let vertex;
+    stack.push(start);
+    visited[start] = true;
+    while(stack.length) {
+      vertex = stack.pop();
+      if (!visited[vertex]) {
+        endResult.push(vertex);
+        this.adjacencyList[vertex].forEach(n => {
+          if(!visited[n]){
+            visited[n] = true;
+            stack.push(n);
+          }
+        });
+      }
+    }
+    return endResult;
+    // let S be a stack
+    // S.push(start)
+    // while S is not empty
+      // vertex = S.pop()
+      // if vertex is not labeled as discovered:
+        // visit vertex (add to result list)
+        // label vertex as discovered
+        // for each of vertex's neighbors, N do
+          // S.push(N)
+      }
 }
+
+export default Graph;
