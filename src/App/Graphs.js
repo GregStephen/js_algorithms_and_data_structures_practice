@@ -189,7 +189,27 @@ class Graph {
         // label vertex as discovered
         // for each of vertex's neighbors, N do
           // S.push(N)
-      }
+  }
+  depthFirst = (start) => {
+    const queue = [start];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+    visited[start] = true;
+    
+    while(queue.length){
+      currentVertex = queue.shift();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach(neighbor => {
+        if(!visited[neighbor]){
+          visited[neighbor] = true;
+          queue.push(visited[neighbor]);
+        }
+      });
+    }
+    return result;
+  }
 }
 
 export default Graph;
